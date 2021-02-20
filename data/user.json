@@ -1,0 +1,14 @@
+[
+  {
+    "id": "u101",
+    "username": "RotemCarmon",
+    "password": "Rotemc88",
+    "isAdmin": true
+  },
+  {
+    "id": "u102",
+    "username": "CodingAcademy21",
+    "password": "codingacademy21",
+    "isAdmin": true
+  }
+]

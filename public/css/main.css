@@ -1,0 +1,142 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #383838;
+}
+
+header {
+    height: 60px;
+    /* border-bottom: 1px solid black; */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.form-el {
+    margin-bottom: 12px;
+    min-width: 190px;
+    height: 28px;
+    border-radius: 4px;
+}
+
+select {
+    cursor: pointer;
+}
+
+label {
+    font-size: 1.1em;
+}
+
+button {
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+    color: #222222;
+    min-width: 80px;
+    border-radius: 4px;
+}
+
+.btn {
+    height: 25px;
+    background-color: #41a85f;
+    padding: 6px;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background-color: #46b466;
+}
+
+.nav-btn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(238, 238, 238);
+}
+
+.nav-btn:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.76);
+}
+
+.login input{
+  padding-inline-start: 8px;
+}
+.login h3{
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    min-height: 160px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 4px black;
+    padding: 12px;
+    line-height: 1.2;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.973);
+}
+
+.user-msg h1 {
+    font-size: 1.4em;
+}
+
+.open .user-msg,
+.open .screen {
+    display: flex;
+}
+.open-login .login,
+.open-login .screen {
+    display: flex;
+}
+
+.team-list {
+  display: none;
+  margin: auto;
+  margin-top: 20px  ;
+  border-collapse: collapse;
+}
+
+.team-list.show {
+  display: table;
+}
+
+table td, table th {
+  text-align: start;
+  border:1px solid black;
+  padding: 4px;
+}
+
+table td.remove-team {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+
+table tr.isMatch {
+  background-color: rgba(47, 154, 255, 0.178);
+} 

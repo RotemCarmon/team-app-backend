@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team App</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="init()">
+  <header>
+    <button class="nav-btn" onclick="openLogin()">Admin</button>
+  </header>
+  <main class="main-container">
+
+    <h1>Hello Teams</h1>
+
+    <label for="your-team">Your Name</label>
+    <select id="your-team" class="select-your-name form-el"></select>
+
+    <label for="partner-team">Partner Name</label>
+    <select class="select-partner-name form-el"></select>
+
+    <button onclick="submitTeam()" class="submit-team btn">Submit</button>
+  </main>
+  <table class="team-list">
+    <thead>
+      <tr>
+        <th>Member 1</th>
+        <th>Member 2</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="screen"></div>
+
+  <div class="login modal">
+    <h3>Login</h3>
+    <input class="username form-el" type="text" placeholder="Enter Username" />
+    <input class="password form-el" type="password" placeholder="Enter Password" />
+    <button class="btn" onclick="doLogin()">Submit</button>
+  </div>
+
+  <div class="user-msg modal">
+    <h1></h1>
+    <button class="btn" onclick="closeMsg()">Close</button>
+  </div>
+  <script src="lib/axios.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

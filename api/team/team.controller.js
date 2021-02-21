@@ -1,8 +1,10 @@
 const teamService = require('./team.service.js')
+const CustomMsg = require('../../classes/customMsg.js')
 
 async function  getTeams(req, res, next) {
   try {
-    const teams = await teamService.getTeamForDisplay();
+    // const teams = await teamService.getTeamForDisplay();
+    const teams = await teamService.getTeams();
     res.json(teams);
   } catch (err) {
     next(err)
@@ -24,8 +26,8 @@ async function  addTeam(req, res, next) {
 async function  removeTeam(req, res, next) {
   try {
     const { id } = req.params;
-    const removedTeam = await teamService.removeTeam(id)
-    res.json(removedTeam);
+    const teams = await teamService.removeTeam(id)
+    res.json(teams);
   } catch (err) {
     next(err)
   }

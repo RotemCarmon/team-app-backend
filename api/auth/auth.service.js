@@ -1,14 +1,15 @@
 const bcrypt = require('bcrypt')
 const userService = require('../user/user.service')
-const CustomMsg = require('../../classes/customMsg.js')
 // const  logger = require('../../services///  logger.service')
 
 const saltRounds = 10
 
 async function login(username, password) {
+    console.log('LOGIN IN!!!!!');
     //  logger.debug(`auth.service - login with username: ${username}`)
-    if (!username || !password) Promise.reject('username and password are required!')
-
+    if (!username || !password) return Promise.reject('username and password are required!')
+    
+    console.log('LOGIN IN!!!!!22222222222');
     const user = await userService.getByUsername(username)
     if (!user) return Promise.reject('Invalid username or password')
     const match = await bcrypt.compare(password, user.password)

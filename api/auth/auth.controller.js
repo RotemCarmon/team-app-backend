@@ -1,8 +1,10 @@
 const authService = require('./auth.service')
+const CustomMsg = require('../../classes/customMsg.js')
 //const  logger = require('../../services///  logger.service')
 
 async function login(req, res) {
     const { username, password } = req.body
+    console.log('username, password:', username, password)
     try {
         const user = await authService.login(username, password)
         req.session.user = user;

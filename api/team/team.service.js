@@ -38,14 +38,13 @@ async function getTeamForDisplay() {
 async function addTeam(team, isForce) {
   let teams = await getTeams();
   if (!teams || !teams.length) teams = [];
-  let res;
+  let res = {};
   if (!isForce) res = await _varifyChoise(teams, team);
   team.id = utilService.makeid()
   teams.push(team)
   await fileService.writeTofile(dbPath, teams);
-  if (res?.type === 'Custom Message') {
-    return res
-  } else return teams
+  res.data = teams
+  return res
 }
 
 async function removeTeam(teamId) {
@@ -54,7 +53,7 @@ async function removeTeam(teamId) {
   if (teamIdx === -1) throw new Error(`Team Id ${teamId} was not found!`);
   const [removedTeam] = teams.splice(teamIdx, 1)
   await fileService.writeTofile(dbPath, teams)
-  return removedTeam;
+  return teams;
 }
 
 //////////////////////////////
@@ -63,15 +62,14 @@ async function removeTeam(teamId) {
 
 function _varifyChoise(teams, team) {
   return new Promise((resolve, reject) => {
-    // if (teams.some(t => team.member1 === t.member1)) throw new CustomMsg('You already chose a partner before')
     teams.forEach(t => {
       if (team.member1 === t.member1) reject(new CustomMsg('You already chose a partner before'))
       else if (team.member2 === t.member1 && team.member1 === t.member2) {
         console.log('It\'s a match!!')
-        resolve(new CustomMsg('The team has been chosen by both members\n🥳'));
+        resolve(new CustomMsg('The team has been chosen by both members\n🥳', 1));
       }
     })
-    resolve(true)
+    resolve({})
   })
 }
 

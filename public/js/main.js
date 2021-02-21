@@ -142,7 +142,9 @@ function closeLogin() {
 
 // SERVICE
 
-const BASE_URL = env.NODE_ENV === 'production'
+console.log('process:', process)
+console.log('NODE_ENV:', NODE_ENV)
+const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
     : '//localhost:3030/api/'
 

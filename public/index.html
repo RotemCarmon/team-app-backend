@@ -11,7 +11,11 @@
 
 <body onload="init()">
   <header>
-    <button class="nav-btn" onclick="openLogin()">Admin</button>
+    <div class="btns">
+      <button class="nav-btn login-btn" onclick="openLogin()">Login</button>
+      <button class="nav-btn logout-btn hide" onclick="doLogout()">Logout</button>
+    </div>
+    <h3 class="header-greet hide">Hello <span></span></h3>
   </header>
   <main class="main-container">
 

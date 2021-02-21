@@ -12,6 +12,21 @@ function getLoggedinUser() {
   const loggedinUser = getUserFromStorage()
   if (!loggedinUser) return;
   if (loggedinUser.isAdmin) renderTeams()
+  handleHeader(loggedinUser)
+
+}
+
+function handleHeader(loggedinUser) {
+  if (loggedinUser) {
+    document.querySelector('.login-btn').classList.add('hide')
+    document.querySelector('.logout-btn').classList.remove('hide')
+    document.querySelector('.header-greet').classList.remove('hide')
+    document.querySelector('.header-greet span').innerText = loggedinUser.username
+  } else {
+    document.querySelector('.login-btn').classList.remove('hide')
+    document.querySelector('.logout-btn').classList.add('hide')
+    document.querySelector('.header-greet').classList.add('hide')
+  }
 }
 
 function renderStudents() {
@@ -80,10 +95,19 @@ async function doLogin() {
   const res = await login({ username, password })
   if (res.type === 'Custom Message') userMsg(res.message);
   else if (res.isAdmin) {
-    closeLogin()
-    setUserToStorage(res)
     renderTeams()
   }
+  closeLogin()
+  setUserToStorage(res)
+  handleHeader(res)
+}
+
+async function doLogout() {
+  await logout();
+  handleHeader(null)
+  document.querySelector('.team-list').classList.remove('show')
+  localStorage.clear()
+
 }
 
 async function onRemoveTeam(teamId) {
@@ -118,7 +142,9 @@ function closeLogin() {
 
 // SERVICE
 
-const BASE_URL = 'http://localhost:3030';
+const BASE_URL = process.env.NODE_ENV === 'production'
+    ? '/api/'
+    : '//localhost:3030/api/'
 
 
 async function postTeam(member1, member2, isForce) {
@@ -139,8 +165,11 @@ async function removeTeam(teamId) {
 }
 
 async function login(payload) {
-  const res = await axios.post(`${BASE_URL}/login`, payload);
-  console.log('res:', res)
+  const res = await axios.post(`${BASE_URL}/auth/login`, payload);
+  return res.data;
+}
+async function logout() {
+  const res = await axios.post(`${BASE_URL}/auth/logout`);
   return res.data;
 }
 

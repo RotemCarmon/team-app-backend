@@ -5,8 +5,15 @@ html {
 
 header {
     height: 60px;
+    display: flex;
+    justify-content: space-between;
     /* border-bottom: 1px solid black; */
 }
+
+header .btns {
+    display: flex;
+}
+
 
 .main-container {
     display: flex;
@@ -60,6 +67,10 @@ button {
 
 .nav-btn:hover {
     background-color: rgb(224, 224, 224);
+}
+
+.hide {
+    display: none;
 }
 
 .screen {

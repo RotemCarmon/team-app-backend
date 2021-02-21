@@ -1,9 +1,8 @@
-console.log('Team App Node');
 const fs = require('fs');
 
-const CustomMsg = require('../classes/customMsg.js')
-const utilService = require('./util.service.js')
-const fileService = require('./file.service.js')
+const CustomMsg = require('../../classes/customMsg.js')
+const utilService = require('../../services/util.service.js')
+const fileService = require('../../services/file.service')
 
 const dbPath = './data/db.json'
 
@@ -11,8 +10,7 @@ module.exports = {
   getTeams,
   addTeam,
   getTeamForDisplay,
-  removeTeam,
-  getMemberByName
+  removeTeam
 }
 
 async function getTeams() {
@@ -37,11 +35,6 @@ async function getTeamForDisplay() {
   return teamsForDisplay;
 }
 
-async function getMemberByName(name) {
-  const teams = await getTeams();
-  return teams.filter(team => team.member2 === name);
-}
-
 async function addTeam(team, isForce) {
   let teams = await getTeams();
   if (!teams || !teams.length) teams = [];
@@ -63,6 +56,10 @@ async function removeTeam(teamId) {
   await fileService.writeTofile(dbPath, teams)
   return removedTeam;
 }
+
+//////////////////////////////
+//////////////////////////////
+//////////////////////////////
 
 function _varifyChoise(teams, team) {
   return new Promise((resolve, reject) => {

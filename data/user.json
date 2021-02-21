@@ -2,13 +2,13 @@
   {
     "id": "u101",
     "username": "RotemCarmon",
-    "password": "Rotemc88",
+    "password": "$2b$10$Bi8DEp/VXGKSyzMtshXvp.QhXGQ5GBD3hKYX/i3lWSEG1oCEqtFR2",
     "isAdmin": true
   },
   {
     "id": "u102",
     "username": "CodingAcademy21",
-    "password": "codingacademy21",
+    "password": "$2b$10$p3r.vHIiz9G0Jozg3QzZqOpfjnQ54gW3ntLaPJ6eTPRNwSdmQ1QQy",
     "isAdmin": true
   }
 ]

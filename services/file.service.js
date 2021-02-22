@@ -22,7 +22,6 @@ function readFromFile(filePath) {
     }
     fs.readFile(filePath, 'utf-8', (err, data) => {
       if (err) return reject(`error reading from ${filePath}:`, err);
-      console.log('DATAAAAAAAAAAAAAAAAAA IS: ' + data);
       if (!data || !data.length) resolve(null)
       var parsedData = JSON.parse(data)
       resolve(parsedData);

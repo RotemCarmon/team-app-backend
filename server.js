@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const path = require('path');
 const session = require('express-session')
 const cors = require('cors')
+
 const app = express();
 app.use(bodyParser.json());
 app.use(session({
@@ -13,8 +14,6 @@ app.use(session({
 }))
 const http = require('http').createServer(app);
 
-// app.use(express.static('public'))
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'public')));
 } else {
@@ -24,8 +23,6 @@ if (process.env.NODE_ENV === 'production') {
   };
   app.use(cors(corsOptions));
 }
-
-// console.log('Process', process.env);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));

@@ -9,30 +9,11 @@ const dbPath = './data/db.json'
 module.exports = {
   getTeams,
   addTeam,
-  getTeamForDisplay,
   removeTeam
 }
 
 async function getTeams() {
   return await fileService.readFromFile(dbPath);
-}
-
-
-async function getTeamForDisplay() {
-  const teams = await getTeams()
-  const teamsToFilterOut = []
-  const teamsForDisplay = teams.filter((team, idx) => {
-    const dupIdx = teams.findIndex(t => {
-      return t.member2 === team.member1 && t.member1 === team.member2
-    })
-    if (dupIdx !== -1) {
-      teamsToFilterOut.push(dupIdx);
-      team.isMatch = true;
-    }
-    if (teamsToFilterOut.includes(idx)) return false
-    return team;
-  })
-  return teamsForDisplay;
 }
 
 async function addTeam(team, isForce) {

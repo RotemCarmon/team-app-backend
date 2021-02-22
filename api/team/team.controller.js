@@ -3,7 +3,6 @@ const CustomMsg = require('../../classes/customMsg.js')
 
 async function  getTeams(req, res, next) {
   try {
-    // const teams = await teamService.getTeamForDisplay();
     const teams = await teamService.getTeams();
     res.json(teams);
   } catch (err) {

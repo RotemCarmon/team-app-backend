@@ -3,38 +3,70 @@ const fs = require('fs');
 const CustomMsg = require('../../classes/customMsg.js')
 const utilService = require('../../services/util.service.js')
 const fileService = require('../../services/file.service')
+const dbService = require('../../services/db.service')
 
 const dbPath = './data/db.json'
-
+const dbMongoPath = 'mongodb+srv://Shachar:123@teams.ul6xp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 module.exports = {
   getTeams,
   addTeam,
-  removeTeam
+  removeTeam,
+  clearTeam
 }
 
 async function getTeams() {
-  return await fileService.readFromFile(dbPath);
+  try {
+    const collection = await dbService.getCollection('team')
+    var teams = await collection.find().toArray();
+    return teams
+  } catch (err) {
+    console.error('cannot find teams', err);
+    throw err
+  }
 }
 
-async function addTeam(team, isForce) {
-  let teams = await getTeams();
-  if (!teams || !teams.length) teams = [];
-  let res = {};
-  if (!isForce) res = await _varifyChoise(teams, team);
-  team.id = utilService.makeid()
-  teams.push(team)
-  await fileService.writeTofile(dbPath, teams);
-  res.data = teams
-  return res
+async function addTeam(team, isForce) { // add/update
+  try {
+    let savedTeam = null;
+    let res = {};
+    const collection = await dbService.getCollection('team');
+    var teams = await collection.find().toArray();
+    if (!isForce) res = await _varifyChoise(teams, team);
+    if (team && team._id) { // update team
+      const teamToUpdate = { ...team };
+      delete teamToUpdate._id;
+      await collection.updateOne({ _id: team._id }, { $set: { ...teamToUpdate } });
+      res.data = team;
+    } else { // add team
+      const newTeam = { ...team, _id: utilService.makeid() };
+      savedTeam = await collection.insertOne(newTeam);
+      res.data = savedTeam
+    }
+    return res
+  } catch (err) {
+    console.log("Team err");
+    throw err;
+  }
 }
 
 async function removeTeam(teamId) {
-  const teams = await getTeams();
-  const teamIdx = teams.findIndex(team => team.id === teamId);
-  if (teamIdx === -1) throw new Error(`Team Id ${teamId} was not found!`);
-  const [removedTeam] = teams.splice(teamIdx, 1)
-  await fileService.writeTofile(dbPath, teams)
-  return teams;
+  try {
+    // const store = asyncLocalStorage.getStore();
+    const collection = await dbService.getCollection('team')
+    const query = { _id: teamId }
+    await collection.deleteOne(query)
+  } catch (err) {
+    throw err
+  }
+}
+
+async function clearTeam() {
+  try {
+    const collection = await dbService.getCollection('team')
+    await collection.deleteMany({})
+  } catch (err) {
+    throw err
+  }
 }
 
 //////////////////////////////

@@ -2,6 +2,7 @@
 
 async function requireAuth(req, res, next) {
   if (!req.session || !req.session.user) {
+    res.type = 'Custom Message';
     res.status(401).end('Unauthorized!');
     return;
   }
@@ -14,7 +15,7 @@ async function requireAdmin(req, res, next) {
     res.status(403).end('Unauthorized Enough..');
     return;
   }
-  next();
+  next(); 
 }
 
 module.exports = {

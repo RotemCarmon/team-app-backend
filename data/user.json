@@ -1,14 +1,16 @@
-[
-  {
-    "id": "u101",
-    "username": "RotemCarmon",
-    "password": "$2b$10$Bi8DEp/VXGKSyzMtshXvp.QhXGQ5GBD3hKYX/i3lWSEG1oCEqtFR2",
-    "isAdmin": true
-  },
-  {
-    "id": "u102",
-    "username": "CodingAcademy21",
-    "password": "$2b$10$p3r.vHIiz9G0Jozg3QzZqOpfjnQ54gW3ntLaPJ6eTPRNwSdmQ1QQy",
-    "isAdmin": true
-  }
-]
+[{
+  "id": "u101",
+  "username": "RotemCarmon",
+  "password": "$2b$10$Bi8DEp/VXGKSyzMtshXvp.QhXGQ5GBD3hKYX/i3lWSEG1oCEqtFR2",
+  "isAdmin": true
+}, {
+  "id": "u102",
+  "username": "CodingAcademy21",
+  "password": "$2b$10$p3r.vHIiz9G0Jozg3QzZqOpfjnQ54gW3ntLaPJ6eTPRNwSdmQ1QQy",
+  "isAdmin": true
+}, {
+  "password": "$2b$10$E5BVD2fgpfTyLhgRYKeMZetPTKvcpjrHfnIS3AJ7YqShnXNrP2kMu",
+  "username": "Shachar",
+  "id": "rYscX",
+  "isAdmin": true
+}]

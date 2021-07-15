@@ -19,6 +19,7 @@ async function getStudents() {
 // getting students as CSV and enter them into json file
 async function addStudents(students) {
   let studentsToSave = students.split(',');
+  studentsToSave.sort();
   if (!studentsToSave || !studentsToSave.length) studentsToSave = [];
   let res = {};
   await teamService.clearTeam();

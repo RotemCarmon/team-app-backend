@@ -1,7 +1,7 @@
 const teamService = require('./team.service.js')
 const CustomMsg = require('../../classes/customMsg.js')
 
-async function  getTeams(req, res, next) {
+async function getTeams(req, res, next) {
   try {
     const teams = await teamService.getTeams();
     res.json(teams);
@@ -10,7 +10,7 @@ async function  getTeams(req, res, next) {
   }
 }
 
-async function  addTeam(req, res, next) {
+async function addTeam(req, res, next) {
   try {
     const { team, isForce } = req.body;
     // isForce will skip the verification process
@@ -22,7 +22,7 @@ async function  addTeam(req, res, next) {
   }
 }
 
-async function  removeTeam(req, res, next) {
+async function removeTeam(req, res, next) {
   try {
     const { id } = req.params;
     const teams = await teamService.removeTeam(id)

@@ -76,8 +76,9 @@ async function clearTeam() {
 function _varifyChoise(teams, team) {
   return new Promise((resolve, reject) => {
     teams.forEach(t => {
-      if (team.member1 === t.member1) reject(new CustomMsg('You\'ve already chosen a partner'))
-      else if (team.member2 === t.member1 && team.member1 === t.member2) {
+      if (team?.member1 === t?.member1) reject(new CustomMsg('You\'ve already chosen a partner'))
+      // no need
+      else if (team?.member2 === t?.member1 && team?.member1 === t?.member2) {
         console.log('It\'s a match!!')
         resolve(new CustomMsg('It\'s a match🥳\n You\'ve both chosen each other', 1));
       }
